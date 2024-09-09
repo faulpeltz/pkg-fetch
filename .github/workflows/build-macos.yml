@@ -96,7 +96,12 @@ jobs:
 
       - run: yarn start --node-range node${{ matrix.target-node }} --arch arm64 --output dist
         env:
-          MAKE_JOB_COUNT: 2 # prevent to run out of memory
+          MAKE_JOB_COUNT: 1 # prevent to run out of memory
+        # uncomment the following lines to build x64
+          # CC: clang -arch arm64
+          # CXX: clang++ -arch arm64
+          # CC_host: clang
+          # CXX_host: clang++
 
       - name: Check if binary is compiled
         id: check_file
