@@ -71,10 +71,10 @@ index d3e35d6ec5..6e9bbe3849 100644
    static const char* GetVersion();
  
 diff --git node/deps/v8/src/api/api.cc node/deps/v8/src/api/api.cc
-index 2dd476dda3..8a51f25b57 100644
+index 2dd476dda3..66bb8a2e28 100644
 --- node/deps/v8/src/api/api.cc
 +++ node/deps/v8/src/api/api.cc
-@@ -624,6 +624,28 @@ void V8::SetFlagsFromCommandLine(int* argc, char** argv, bool remove_flags) {
+@@ -624,6 +624,32 @@ void V8::SetFlagsFromCommandLine(int* argc, char** argv, bool remove_flags) {
                                         HelpOptions(HelpOptions::kDontExit));
  }
  
@@ -83,14 +83,18 @@ index 2dd476dda3..8a51f25b57 100644
 +
 +void V8::EnableCompilationForSourcelessUse() {
 +  save_lazy = i::v8_flags.lazy;
-+  i::v8_flags.lazy = false;
++  //i::v8_flags.lazy = false;
++
 +  save_predictable = i::v8_flags.predictable;
-+  i::v8_flags.predictable = true;
++  //i::v8_flags.predictable = true;
 +}
 +
 +void V8::DisableCompilationForSourcelessUse() {
++
 +  i::v8_flags.lazy = save_lazy;
++
 +  i::v8_flags.predictable = save_predictable;
++
 +}
 +
 +void V8::FixSourcelessScript(Isolate* v8_isolate, Local<UnboundScript> unbound_script) {
@@ -194,10 +198,10 @@ index 529e283bbf..c997c53a18 100644
            ClassPositions::cast(*maybe_class_positions);
        int start_position = class_positions->start();
 diff --git node/deps/v8/src/objects/objects.cc node/deps/v8/src/objects/objects.cc
-index 8e013c2544..7ac03149d8 100644
+index 8e013c2544..158331e2ad 100644
 --- node/deps/v8/src/objects/objects.cc
 +++ node/deps/v8/src/objects/objects.cc
-@@ -4263,7 +4263,12 @@ void Script::InitLineEndsInternal(IsolateT* isolate, Handle<Script> script) {
+@@ -4263,7 +4263,11 @@ void Script::InitLineEndsInternal(IsolateT* isolate, Handle<Script> script) {
  
  void Script::SetSource(Isolate* isolate, Handle<Script> script,
                         Handle<String> source) {
@@ -205,8 +209,7 @@ index 8e013c2544..7ac03149d8 100644
 +  if (source->length() > 0) {
 +    script->set_source(*source);
 +  } else {
-+    Tagged<PrimitiveHeapObject> und = *isolate->factory()->undefined_value();
-+    script->set_source(und);
++    script->set_source(i::ReadOnlyRoots(isolate).undefined_value());
 +  }
    if (isolate->NeedsSourcePositions()) InitLineEnds(isolate, script);
  }
