@@ -233,7 +233,7 @@ index f160b27ea4..748452ba45 100644
    std::unique_ptr<Utf16CharacterStream> stream(
        ScannerStream::For(isolate, source, shared_info->StartPosition(),
 diff --git node/deps/v8/src/snapshot/code-serializer.cc node/deps/v8/src/snapshot/code-serializer.cc
-index ec69ad5123..1894032344 100644
+index ec69ad5123..db9059f5f1 100644
 --- node/deps/v8/src/snapshot/code-serializer.cc
 +++ node/deps/v8/src/snapshot/code-serializer.cc
 @@ -703,10 +703,6 @@ SerializedCodeSanityCheckResult SerializedCodeData::SanityCheck(
@@ -247,7 +247,7 @@ index ec69ad5123..1894032344 100644
    return SerializedCodeSanityCheckResult::kSuccess;
  }
  
-@@ -723,10 +719,6 @@ SerializedCodeSanityCheckResult SerializedCodeData::SanityCheckWithoutSource(
+@@ -723,15 +719,6 @@ SerializedCodeSanityCheckResult SerializedCodeData::SanityCheckWithoutSource(
    if (version_hash != Version::Hash()) {
      return SerializedCodeSanityCheckResult::kVersionMismatch;
    }
@@ -255,9 +255,14 @@ index ec69ad5123..1894032344 100644
 -  if (flags_hash != FlagList::Hash()) {
 -    return SerializedCodeSanityCheckResult::kFlagsMismatch;
 -  }
-   uint32_t ro_snapshot_checksum =
-       GetHeaderValue(kReadOnlySnapshotChecksumOffset);
-   if (ro_snapshot_checksum != expected_ro_snapshot_checksum) {
+-  uint32_t ro_snapshot_checksum =
+-      GetHeaderValue(kReadOnlySnapshotChecksumOffset);
+-  if (ro_snapshot_checksum != expected_ro_snapshot_checksum) {
+-    return SerializedCodeSanityCheckResult::kReadOnlySnapshotChecksumMismatch;
+-  }
+   uint32_t payload_length = GetHeaderValue(kPayloadLengthOffset);
+   uint32_t max_payload_length = size_ - kHeaderSize;
+   if (payload_length > max_payload_length) {
 diff --git node/lib/child_process.js node/lib/child_process.js
 index bb27670112..d175723c74 100644
 --- node/lib/child_process.js
