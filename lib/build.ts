@@ -38,6 +38,7 @@ function getConfigureArgs(major: number, targetPlatform: string): string[] {
   // also we don't support any kind of debugging
   // against packaged apps, hence v8_inspector is useless
   args.push('--without-inspector');
+  args.push('--without-node-snapshot');
 
   if (hostPlatform === 'alpine') {
     // Statically Link against libgcc and libstdc++ libraries. See vercel/pkg#555.
