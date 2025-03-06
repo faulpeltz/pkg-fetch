@@ -77,6 +77,9 @@ function getConfigureArgs(major: number, targetPlatform: string): string[] {
     args.push('--shared-zlib');
   }
 
+  // HAXX?
+  args.push('--without-node-snapshot');
+
   return args;
 }
 
