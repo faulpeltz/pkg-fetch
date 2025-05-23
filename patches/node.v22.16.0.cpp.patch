@@ -1,5 +1,5 @@
 diff --git node/common.gypi node/common.gypi
-index 372409f4b09..5431580b6cb 100644
+index 393fe32765..450c2c9bbc 100644
 --- node/common.gypi
 +++ node/common.gypi
 @@ -189,7 +189,7 @@
@@ -12,7 +12,7 @@ index 372409f4b09..5431580b6cb 100644
            ],
          },
 diff --git node/deps/ngtcp2/nghttp3/lib/nghttp3_ringbuf.c node/deps/ngtcp2/nghttp3/lib/nghttp3_ringbuf.c
-index 7d3ab39bf82..67a48dee53a 100644
+index 7d3ab39bf8..67a48dee53 100644
 --- node/deps/ngtcp2/nghttp3/lib/nghttp3_ringbuf.c
 +++ node/deps/ngtcp2/nghttp3/lib/nghttp3_ringbuf.c
 @@ -34,10 +34,7 @@
@@ -28,7 +28,7 @@ index 7d3ab39bf82..67a48dee53a 100644
  #else  /* !((defined(_MSC_VER) && !defined(__clang__) && (defined(_M_ARM) ||   \
            (defined(_M_ARM64) && _MSC_VER < 1941))) || defined(WIN32)) */
 diff --git node/deps/ngtcp2/ngtcp2/lib/ngtcp2_ringbuf.c node/deps/ngtcp2/ngtcp2/lib/ngtcp2_ringbuf.c
-index 353afca4d48..dea944aed5a 100644
+index 353afca4d4..dea944aed5 100644
 --- node/deps/ngtcp2/ngtcp2/lib/ngtcp2_ringbuf.c
 +++ node/deps/ngtcp2/ngtcp2/lib/ngtcp2_ringbuf.c
 @@ -33,10 +33,7 @@
@@ -44,7 +44,7 @@ index 353afca4d48..dea944aed5a 100644
  #  else  /* !((defined(_MSC_VER) && !defined(__clang__) && (defined(_M_ARM) || \
              (defined(_M_ARM64) && _MSC_VER < 1941))) || defined(WIN32)) */
 diff --git node/deps/v8/include/v8-initialization.h node/deps/v8/include/v8-initialization.h
-index d3e35d6ec5f..6e9bbe38491 100644
+index d3e35d6ec5..6e9bbe3849 100644
 --- node/deps/v8/include/v8-initialization.h
 +++ node/deps/v8/include/v8-initialization.h
 @@ -89,6 +89,10 @@ class V8_EXPORT V8 {
@@ -59,7 +59,7 @@ index d3e35d6ec5f..6e9bbe38491 100644
    static const char* GetVersion();
  
 diff --git node/deps/v8/src/api/api.cc node/deps/v8/src/api/api.cc
-index 2dd476dda34..8a51f25b572 100644
+index 2dd476dda3..8a51f25b57 100644
 --- node/deps/v8/src/api/api.cc
 +++ node/deps/v8/src/api/api.cc
 @@ -624,6 +624,28 @@ void V8::SetFlagsFromCommandLine(int* argc, char** argv, bool remove_flags) {
@@ -92,10 +92,10 @@ index 2dd476dda34..8a51f25b572 100644
  
  RegisteredExtension::RegisteredExtension(std::unique_ptr<Extension> extension)
 diff --git node/deps/v8/src/codegen/compiler.cc node/deps/v8/src/codegen/compiler.cc
-index 49afab11b6c..4c81f9f90bd 100644
+index 9048655363..ab81c326fc 100644
 --- node/deps/v8/src/codegen/compiler.cc
 +++ node/deps/v8/src/codegen/compiler.cc
-@@ -3627,7 +3627,7 @@ MaybeHandle<SharedFunctionInfo> GetSharedFunctionInfoForScriptImpl(
+@@ -3634,7 +3634,7 @@ MaybeHandle<SharedFunctionInfo> GetSharedFunctionInfoForScriptImpl(
      maybe_script = lookup_result.script();
      maybe_result = lookup_result.toplevel_sfi();
      is_compiled_scope = lookup_result.is_compiled_scope();
@@ -105,7 +105,7 @@ index 49afab11b6c..4c81f9f90bd 100644
      } else if (can_consume_code_cache) {
        compile_timer.set_consuming_code_cache();
 diff --git node/deps/v8/src/compiler/wasm-compiler.cc node/deps/v8/src/compiler/wasm-compiler.cc
-index 16f1f1470b7..4bfeca49e64 100644
+index 16f1f1470b..4bfeca49e6 100644
 --- node/deps/v8/src/compiler/wasm-compiler.cc
 +++ node/deps/v8/src/compiler/wasm-compiler.cc
 @@ -8613,12 +8613,13 @@ wasm::WasmCompilationResult CompileWasmImportCallWrapper(
@@ -149,7 +149,7 @@ index 16f1f1470b7..4bfeca49e64 100644
      // Compile the wrapper
      if (job->ExecuteJob(isolate->counters()->runtime_call_stats()) ==
 diff --git node/deps/v8/src/heap/marking-visitor-inl.h node/deps/v8/src/heap/marking-visitor-inl.h
-index 39a5bbd22c2..4b860f55d5e 100644
+index 39a5bbd22c..4b860f55d5 100644
 --- node/deps/v8/src/heap/marking-visitor-inl.h
 +++ node/deps/v8/src/heap/marking-visitor-inl.h
 @@ -329,6 +329,13 @@ bool MarkingVisitorBase<ConcreteVisitor>::HasBytecodeArrayForFlushing(
@@ -167,7 +167,7 @@ index 39a5bbd22c2..4b860f55d5e 100644
  }
  
 diff --git node/deps/v8/src/objects/js-function.cc node/deps/v8/src/objects/js-function.cc
-index 529e283bbf0..c997c53a18c 100644
+index 529e283bbf..c997c53a18 100644
 --- node/deps/v8/src/objects/js-function.cc
 +++ node/deps/v8/src/objects/js-function.cc
 @@ -1308,6 +1308,10 @@ Handle<String> JSFunction::ToString(Handle<JSFunction> function) {
@@ -182,7 +182,7 @@ index 529e283bbf0..c997c53a18c 100644
            ClassPositions::cast(*maybe_class_positions);
        int start_position = class_positions->start();
 diff --git node/deps/v8/src/objects/objects.cc node/deps/v8/src/objects/objects.cc
-index 8e013c2544e..7ac03149d86 100644
+index 8e013c2544..7ac03149d8 100644
 --- node/deps/v8/src/objects/objects.cc
 +++ node/deps/v8/src/objects/objects.cc
 @@ -4263,7 +4263,12 @@ void Script::InitLineEndsInternal(IsolateT* isolate, Handle<Script> script) {
@@ -200,7 +200,7 @@ index 8e013c2544e..7ac03149d86 100644
  }
  
 diff --git node/deps/v8/src/parsing/parsing.cc node/deps/v8/src/parsing/parsing.cc
-index f160b27ea4d..748452ba451 100644
+index f160b27ea4..748452ba45 100644
 --- node/deps/v8/src/parsing/parsing.cc
 +++ node/deps/v8/src/parsing/parsing.cc
 @@ -42,6 +42,7 @@ bool ParseProgram(ParseInfo* info, Handle<Script> script,
@@ -221,7 +221,7 @@ index f160b27ea4d..748452ba451 100644
    std::unique_ptr<Utf16CharacterStream> stream(
        ScannerStream::For(isolate, source, shared_info->StartPosition(),
 diff --git node/deps/v8/src/snapshot/code-serializer.cc node/deps/v8/src/snapshot/code-serializer.cc
-index ec69ad51239..18940323442 100644
+index ec69ad5123..1894032344 100644
 --- node/deps/v8/src/snapshot/code-serializer.cc
 +++ node/deps/v8/src/snapshot/code-serializer.cc
 @@ -703,10 +703,6 @@ SerializedCodeSanityCheckResult SerializedCodeData::SanityCheck(
@@ -247,7 +247,7 @@ index ec69ad51239..18940323442 100644
        GetHeaderValue(kReadOnlySnapshotChecksumOffset);
    if (ro_snapshot_checksum != expected_ro_snapshot_checksum) {
 diff --git node/lib/child_process.js node/lib/child_process.js
-index bb27670112c..d175723c749 100644
+index bb27670112..d175723c74 100644
 --- node/lib/child_process.js
 +++ node/lib/child_process.js
 @@ -168,7 +168,7 @@ function fork(modulePath, args = [], options) {
@@ -261,7 +261,7 @@ index bb27670112c..d175723c749 100644
  function _forkChild(fd, serializationMode) {
 diff --git node/lib/internal/bootstrap/pkg.js node/lib/internal/bootstrap/pkg.js
 new file mode 100644
-index 00000000000..a697294fdfe
+index 0000000000..a697294fdf
 --- /dev/null
 +++ node/lib/internal/bootstrap/pkg.js
 @@ -0,0 +1,49 @@
@@ -315,7 +315,7 @@ index 00000000000..a697294fdfe
 +  }());
 +}());
 diff --git node/lib/internal/modules/cjs/loader.js node/lib/internal/modules/cjs/loader.js
-index 33385fa792b..349ce193332 100644
+index ccd2b4ced3..2e3844a2ca 100644
 --- node/lib/internal/modules/cjs/loader.js
 +++ node/lib/internal/modules/cjs/loader.js
 @@ -250,12 +250,17 @@ function stat(filename) {
@@ -338,7 +338,7 @@ index 33385fa792b..349ce193332 100644
      // Only set cache when `internalModuleStat(internalFsBinding, filename)` succeeds.
      statCache.set(filename, result);
 diff --git node/lib/internal/modules/package_json_reader.js node/lib/internal/modules/package_json_reader.js
-index 3c746fa0e73..c39ba93379a 100644
+index df23a30b1b..4a414c469c 100644
 --- node/lib/internal/modules/package_json_reader.js
 +++ node/lib/internal/modules/package_json_reader.js
 @@ -105,17 +105,20 @@ const requiresJSONParse = (value) => (value !== undefined && (value[0] === '[' |
@@ -374,7 +374,7 @@ index 3c746fa0e73..c39ba93379a 100644
      __proto__: null,
      ...result.data,
 diff --git node/lib/internal/process/pre_execution.js node/lib/internal/process/pre_execution.js
-index d1c05d1717c..c6c806f73cb 100644
+index 4e7be0594c..09efa7b745 100644
 --- node/lib/internal/process/pre_execution.js
 +++ node/lib/internal/process/pre_execution.js
 @@ -50,7 +50,11 @@ const {
@@ -389,7 +389,7 @@ index d1c05d1717c..c6c806f73cb 100644
    return prepareExecution({
      expandArgv1,
      initializeModules,
-@@ -241,7 +245,8 @@ function patchProcessObject(expandArgv1) {
+@@ -243,7 +247,8 @@ function patchProcessObject(expandArgv1) {
    let mainEntry;
    // If requested, update process.argv[1] to replace whatever the user provided with the resolved absolute file path of
    // the entry point.
@@ -399,7 +399,7 @@ index d1c05d1717c..c6c806f73cb 100644
      // Expand process.argv[1] into a full path.
      const path = require('path');
      try {
-@@ -726,6 +731,7 @@ function loadPreloadModules() {
+@@ -735,6 +740,7 @@ function loadPreloadModules() {
    // For user code, we preload modules if `-r` is passed
    const preloadModules = getOptionValue('--require');
    if (preloadModules && preloadModules.length > 0) {
@@ -408,7 +408,7 @@ index d1c05d1717c..c6c806f73cb 100644
        Module: {
          _preloadModules,
 diff --git node/lib/vm.js node/lib/vm.js
-index ae710806201..b05638de759 100644
+index ae71080620..b05638de75 100644
 --- node/lib/vm.js
 +++ node/lib/vm.js
 @@ -98,6 +98,7 @@ class Script extends ContextifyScript {
@@ -430,7 +430,7 @@ index ae710806201..b05638de759 100644
        throw e; /* node-do-not-add-exception-line */
      }
 diff --git node/src/inspector_agent.cc node/src/inspector_agent.cc
-index 7c63c22112b..830c8be5caa 100644
+index 7c63c22112..830c8be5ca 100644
 --- node/src/inspector_agent.cc
 +++ node/src/inspector_agent.cc
 @@ -796,11 +796,6 @@ bool Agent::Start(const std::string& path,
@@ -446,10 +446,10 @@ index 7c63c22112b..830c8be5caa 100644
      parent_env_->AddCleanupHook([](void* data) {
        Environment* env = static_cast<Environment*>(data);
 diff --git node/src/node.cc node/src/node.cc
-index a0f1deadfc5..b8e241a5b4f 100644
+index 0fbcd55d67..f253225d5b 100644
 --- node/src/node.cc
 +++ node/src/node.cc
-@@ -398,6 +398,8 @@ MaybeLocal<Value> StartExecution(Environment* env, StartExecutionCallback cb) {
+@@ -404,6 +404,8 @@ MaybeLocal<Value> StartExecution(Environment* env, StartExecutionCallback cb) {
      return env->RunSnapshotDeserializeMain();
    }
  
@@ -458,7 +458,7 @@ index a0f1deadfc5..b8e241a5b4f 100644
    if (env->worker_context() != nullptr) {
      return StartExecution(env, "internal/main/worker_thread");
    }
-@@ -622,14 +624,6 @@ static void PlatformInit(ProcessInitializationFlags::Flags flags) {
+@@ -628,14 +630,6 @@ static void PlatformInit(ProcessInitializationFlags::Flags flags) {
    }
  
    if (!(flags & ProcessInitializationFlags::kNoDefaultSignalHandling)) {
@@ -474,7 +474,7 @@ index a0f1deadfc5..b8e241a5b4f 100644
    }
  
 diff --git node/src/node_contextify.cc node/src/node_contextify.cc
-index 187ba89290b..dbed6342a9d 100644
+index 5bd30f6e33..533e89c029 100644
 --- node/src/node_contextify.cc
 +++ node/src/node_contextify.cc
 @@ -86,6 +86,7 @@ using v8::Symbol;
@@ -549,7 +549,7 @@ index 187ba89290b..dbed6342a9d 100644
  }
  
 diff --git node/src/node_main.cc node/src/node_main.cc
-index f66099a5570..4048f6bd937 100644
+index f66099a557..4048f6bd93 100644
 --- node/src/node_main.cc
 +++ node/src/node_main.cc
 @@ -22,6 +22,8 @@
@@ -659,10 +659,10 @@ index f66099a5570..4048f6bd937 100644
 +  return adjacent(c, nargv);
 +}
 diff --git node/src/node_options.cc node/src/node_options.cc
-index 1444acd59d4..f2eec6b35f3 100644
+index 3fc8194475..9eb81c84e4 100644
 --- node/src/node_options.cc
 +++ node/src/node_options.cc
-@@ -317,6 +317,7 @@ void Parse(
+@@ -319,6 +319,7 @@ void Parse(
  // TODO(addaleax): Make that unnecessary.
  
  DebugOptionsParser::DebugOptionsParser() {
@@ -671,7 +671,7 @@ index 1444acd59d4..f2eec6b35f3 100644
    if (sea::IsSingleExecutable()) return;
  #endif
 diff --git node/tools/icu/icu-generic.gyp node/tools/icu/icu-generic.gyp
-index f007c65232c..002a00a6aee 100644
+index f007c65232..002a00a6ae 100644
 --- node/tools/icu/icu-generic.gyp
 +++ node/tools/icu/icu-generic.gyp
 @@ -52,7 +52,7 @@
